@@ -111,12 +111,7 @@ function PricingCardComponent({ card }: { card: PricingCard }) {
     : undefined;
 
   return (
-    <div className="bg-white rounded-[24px] shadow-[0px_5px_15px_0px_#e3dbd1] overflow-hidden flex flex-col relative">
-      {card.popular && (
-        <div className="absolute top-2 right-2 bg-[#6cb41b] text-white text-[11px] font-semibold px-2 py-0.5 rounded-full uppercase">
-          beliebt
-        </div>
-      )}
+    <div className="bg-white rounded-[24px] shadow-[0px_5px_15px_0px_#e3dbd1] overflow-hidden flex flex-col">
       {/* Header */}
       <div
         className={`${card.headerBg} py-4 text-center`}
@@ -198,7 +193,14 @@ export default function PricingSection() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
           {CARDS.map((card) => (
-            <PricingCardComponent key={card.name} card={card} />
+            <div key={card.name} className="relative">
+              {card.popular && (
+                <div className="absolute -top-4 right-4 z-10 bg-[#6cb41b] text-white text-[12px] font-semibold px-4 py-1 rounded-full uppercase tracking-wide">
+                  beliebt
+                </div>
+              )}
+              <PricingCardComponent card={card} />
+            </div>
           ))}
         </div>
       </div>
